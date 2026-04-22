@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<section>
+    <!-- <div class="card text-center">
+        <div class="card-body">
+            <h5 class="card-title">SPRING 2026 CS 351 XIA</h5>
+            <p class="card-text">Sam Dunlap, Isaac Hutchinson, Katherine Cho</p>
+            <a href="/admin" class="btn btn-primary">Admin Login</a>
+            <a href="https://docs.google.com/document/d/1KlgDW6cvY78sPaKfO8hlUTiJCnGHJkFlm3Mk6RAF0Y8/edit?tab=t.0" class="btn btn-secondary">Report</a>
+        </div>
+    </div> -->
+    <div class="container">
+
+        <table class="table table-light table-striped">
+            <thead>
+                <tr>
+                    <th scope="col" class="table-light">Name</th>
+                    <th scope="col" class="table-light">Address</th>
+                    <th scope="col" class="table-light">Email</th>
+                    <th scope="col" class="table-light">Phone Number</th>
+                    <th scope="col" class="table-light">Customer Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for c in customers %}
+                <tr class="table-light">
+                    <td class="table-light">{{ c.name }}</td>
+                    <td class="table-light">{{ c.address }}</td>
+                    <td class="table-light">{{ c.email }}</td>
+                    <td class="table-light">{{ c.phoneNumber }}</td>
+                    <td class="table-light">{{ c.customerType }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<!-- bootstrap 5 and Font Awesome 5 CSS -->
+		<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+		<link rel="stylesheet" href="{% static 'css/all.css' %}">
+		<!-- custom CSS -->
+		<link rel="stylesheet" href="{% static 'css/master.css' %}">
+		<link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+		<title>{% block title %}{% endblock %}</title>
+	</head>
+	<body>
+		<!-- imported page content -->
+		{% block content %}
+		{% endblock %}
+		<!-- End imported page content -->
+		<!-- bootstrap Javascript -->
+		<script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+	</body>
+</html>
