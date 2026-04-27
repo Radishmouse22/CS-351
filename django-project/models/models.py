@@ -19,12 +19,16 @@ class Customer(models.Model):
         choices=CustomerType.choices,
         default=CustomerType.SERVICE,
     )
+    def __str__(self):
+        return f"{self.name} ({self.customerType})"
 
 
 class Employee(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     address = models.CharField(max_length=255)
     phoneNumber = models.CharField(max_length=10)
+    def __str__(self):
+        return f"{self.user.get_full_name()} — {self.employeeRole}"
 
 
 class Vehicle(models.Model):
@@ -44,6 +48,8 @@ class Vehicle(models.Model):
         choices=VehicleStatus.choices,
         default=VehicleStatus.INVENTORY,
     )
+    def __str__(self):
+        return f"{self.year} {self.make} {self.model} — {self.vin} [{self.status}]"
 
 
 class Billing(models.Model):
@@ -61,6 +67,8 @@ class Billing(models.Model):
         max_length=9,
         choices=PaymentMethod.choices,
     )
+    def __str__(self):
+        return f"Billing #{self.id} — {self.customer.name} on {self.date} via {self.paymentMethod}"
 
 
 class Sales(models.Model):
@@ -70,6 +78,8 @@ class Sales(models.Model):
     tagNumber = models.CharField(max_length=20, unique=True)
     customizations = models.TextField(blank=True)
     billing = models.ForeignKey(Billing, on_delete=models.PROTECT)
+    def __str__(self):
+        return f"{self.vehicle} sold to {self.customer.name} on {self.dateSold}"
 
 
 class ServiceData(models.Model):
@@ -78,14 +88,18 @@ class ServiceData(models.Model):
     arrivalMileage = models.IntegerField()
     departureMileage = models.IntegerField()
     estimate = models.DecimalField(max_digits=10, decimal_places=2)
-    billing = models.ForeignKey(Billing, on_delete=models.PROTECT)
+    billing = models.ForeignKey(Billing, on_delete=models.PROTECT, null=True)
     note = models.TextField(blank=True)
+    def __str__(self):
+        return f"Service #{self.id} — {self.vehicle.year} {self.vehicle.make} {self.vehicle.model} for {self.customer.name} (est. ${self.estimate})"
 
 
 class WorkedOn(models.Model):
     employee = models.ForeignKey(Employee, on_delete=models.PROTECT)
     serviceData = models.ForeignKey(ServiceData, on_delete=models.PROTECT)
     hours = models.DecimalField(max_digits=5, decimal_places=2)
+    def __str__(self):
+        return f"{self.employee.user.get_full_name()} — Service #{self.serviceData.id} ({self.hours} hrs)"
 
 
 class InventoryVehicle(models.Model):
@@ -103,6 +117,8 @@ class InventoryVehicle(models.Model):
         default=Location.MAIN_LOT,
     )
     note = models.TextField(blank=True)
+    def __str__(self):
+        return f"{self.vehicle.year} {self.vehicle.make} {self.vehicle.model} — {self.location}"
 
 
 # when an inventoryVehicle is created, set the corresponding to be in inventory

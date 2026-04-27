@@ -5,6 +5,7 @@ from .models import (
     Customer, Employee, Vehicle, Billing,
     Sales, ServiceData, WorkedOn, InventoryVehicle
 )
+from import_export.admin import ImportExportModelAdmin
 
 def get_fields(model):
     return [
@@ -13,33 +14,33 @@ def get_fields(model):
     ]
 
 @admin.register(Customer)
-class CustomerAdmin(DjangoQLSearchMixin, admin.ModelAdmin):
+class CustomerAdmin(ImportExportModelAdmin, DjangoQLSearchMixin, admin.ModelAdmin):
     list_display = get_fields(Customer)
 
 @admin.register(Employee)
-class EmployeeAdmin(DjangoQLSearchMixin, admin.ModelAdmin):
+class EmployeeAdmin(ImportExportModelAdmin, DjangoQLSearchMixin, admin.ModelAdmin):
     list_display = get_fields(Employee)
 
 @admin.register(Vehicle)
-class VehicleAdmin(DjangoQLSearchMixin, admin.ModelAdmin):
+class VehicleAdmin(ImportExportModelAdmin, DjangoQLSearchMixin, admin.ModelAdmin):
     list_display = get_fields(Vehicle)
 
 @admin.register(Billing)
-class BillingAdmin(DjangoQLSearchMixin, admin.ModelAdmin):
+class BillingAdmin(ImportExportModelAdmin, DjangoQLSearchMixin, admin.ModelAdmin):
     list_display = get_fields(Billing)
 
 @admin.register(Sales)
-class SalesAdmin(DjangoQLSearchMixin, admin.ModelAdmin):
+class SalesAdmin(ImportExportModelAdmin, DjangoQLSearchMixin, admin.ModelAdmin):
     list_display = get_fields(Sales)
 
 @admin.register(ServiceData)
-class ServiceDataAdmin(DjangoQLSearchMixin, admin.ModelAdmin):
+class ServiceDataAdmin(ImportExportModelAdmin, DjangoQLSearchMixin, admin.ModelAdmin):
     list_display = get_fields(ServiceData)
 
 @admin.register(WorkedOn)
-class WorkedOnAdmin(DjangoQLSearchMixin, admin.ModelAdmin):
+class WorkedOnAdmin(ImportExportModelAdmin, DjangoQLSearchMixin, admin.ModelAdmin):
     list_display = get_fields(WorkedOn)
 
 @admin.register(InventoryVehicle)
-class InventoryVehicleAdmin(DjangoQLSearchMixin, admin.ModelAdmin):
+class InventoryVehicleAdmin(ImportExportModelAdmin, DjangoQLSearchMixin, admin.ModelAdmin):
     list_display = get_fields(InventoryVehicle)
