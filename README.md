@@ -50,6 +50,7 @@ Sample billing staff login: `mshaw` password `changeme123`
     1. select customer/vehicle/billing relation
     2. use djangoql to search through the entries (automatically suggests what to type next for non-technical users)
 
+
 # SQL Tests (In Shell)
 You must have SQLite3 installed and added to your PATH.
 
