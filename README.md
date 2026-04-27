@@ -1,4 +1,4 @@
-# CS 351 Final
+# CS 351 Project
 Sam Dunlap, Isaac Hutchinson, Katherine Cho
 
 Make sure to cd into the project file first
