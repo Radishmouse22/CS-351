@@ -28,7 +28,7 @@ class Employee(models.Model):
     address = models.CharField(max_length=255)
     phoneNumber = models.CharField(max_length=10)
     def __str__(self):
-        return f"{self.user.get_full_name()} — {self.employeeRole}"
+        return f"{self.user.get_full_name()}"
 
 
 class Vehicle(models.Model):
